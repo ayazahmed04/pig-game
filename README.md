@@ -23,9 +23,3 @@ To play the Pig Game, follow these steps:
    ```bash
    git clone https://github.com/ayazahmed04/pig-game.git
    ```
-
-2. For online play you also go to this link
-
-   ```bash
-    click here https://ayazahmed04.github.io/pig-game/
-   ```
