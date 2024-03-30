@@ -32,6 +32,15 @@ const startGame = () => {
   player1El.classList.remove("player--active")
 }
 
+// Switch Player
+const switchPlayer = () => {
+  document.querySelector(`#current--${activeplayer}`).textContent = 0
+  currentScore = 0
+  activeplayer = activeplayer === 0 ? 1 : 0
+  player0El.classList.toggle("player--active")
+  player1El.classList.toggle("player--active")
+}
+
 startGame()
 // Add roll dice functionality
 btnRoll.addEventListener("click", () => {
@@ -44,22 +53,16 @@ btnRoll.addEventListener("click", () => {
 
     // if dice is not equal to one
     if (dice !== 1) {
-      // console.log("Dice is not equal to one ")
       currentScore += dice
       document.getElementById(`current--${activeplayer}`).textContent = currentScore
     } else {
       // switch player
-      document.getElementById(`current--${activeplayer}`).textContent = 0
-      currentScore = 0
-      activeplayer = activeplayer === 0 ? 1 : 0
-      player0El.classList.toggle("player--active")
-      player1El.classList.toggle("player--active")
+      switchPlayer()
     }
   }
 })
 
 // Hold score function
-
 btnHold.addEventListener("click", () => {
   if (playing) {
     // add current score the the active player score
@@ -67,20 +70,17 @@ btnHold.addEventListener("click", () => {
     document.getElementById(`score--${activeplayer}`).textContent = scores[activeplayer]
 
     // check if the score of active player is greater than 100 in our checking case we make 15
-    if (scores[activeplayer] >= 100) {
+    if (scores[activeplayer] >= 10) {
       playing = false
       diceEl.classList.add("hidden")
 
       document.querySelector(`.player--${activeplayer}`).classList.add("player--winner")
       document.querySelector(`.player--${activeplayer}`).classList.remove("player--active")
     } else {
-      // switch player
-      document.getElementById(`current--${activeplayer}`).textContent = 0
-      currentScore = 0
-      activeplayer = activeplayer === 0 ? 1 : 0
-      player0El.classList.toggle("player--active")
-      player1El.classList.toggle("player--active")
+      switchPlayer()
     }
   }
 })
+
+// NewBtn or RefreshBtn
 newBtn.addEventListener("click", startGame)
