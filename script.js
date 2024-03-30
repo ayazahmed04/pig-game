@@ -13,17 +13,26 @@ let btnRoll = document.querySelector(".btn--roll")
 let btnHold = document.querySelector(".btn--hold")
 
 // Starting Game
-score0El.textContent = 0
-score1El.textContent = 0
-current0El.textContent = 0
-current1El.textContent = 0
-diceEl.classList.add("hidden")
+let currentScore, activeplayer, scores, playing
+const startGame = () => {
+  score0El.textContent = 0
+  score1El.textContent = 0
+  current0El.textContent = 0
+  current1El.textContent = 0
 
-let currentScore = 0
-let activeplayer = 0
-let scores = [0, 0]
-let playing = true
+  currentScore = 0
+  activeplayer = 0
+  scores = [0, 0]
+  playing = true
 
+  diceEl.classList.add("hidden")
+  player0El.classList.remove("player--winner")
+  player1El.classList.remove("player--winner")
+  player0El.classList.add("player--active")
+  player1El.classList.remove("player--active")
+}
+
+startGame()
 // Add roll dice functionality
 btnRoll.addEventListener("click", () => {
   if (playing) {
@@ -74,3 +83,4 @@ btnHold.addEventListener("click", () => {
     }
   }
 })
+newBtn.addEventListener("click", startGame)
